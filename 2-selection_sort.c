@@ -2,8 +2,9 @@
 
 /**
  * selection_sort - that method sorting a array for selection mode
- * 
- * 
+ * @array: my list
+ * @size: lenght to array
+ * Return: nothing
  */
 
 void selection_sort(int *array, size_t size)
@@ -11,11 +12,11 @@ void selection_sort(int *array, size_t size)
 	size_t i, j, k, tmp;
 	int p_min, pos;
 
-	for(j = 0; j < size; j++)
+	for (j = 0; j < size; j++)
 	{
 		p_min = array[j];
 		pos = 0;
-		for(i = j; i < size; i++)
+		for (i = j; i < size; i++)
 		{
 			if (p_min > array[i])
 			{
@@ -30,6 +31,6 @@ void selection_sort(int *array, size_t size)
 			array[j] = array[k];
 			array[k] = tmp;
 		}
-	print_array(array, size);
+		print_array(array, size);
 	}
 }
