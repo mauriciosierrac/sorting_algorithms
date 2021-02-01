@@ -9,6 +9,8 @@
 
 void insertion_sort_list(listint_t **list)
 {
+	listint_t *burger, *beer;
+
 	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
 	burger = *list;
