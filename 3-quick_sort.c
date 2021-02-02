@@ -39,7 +39,7 @@ int partition_beer(int *array, int low, int high, size_t size)
 			{
 				swap_int(&array[i], &array[j]);
 				print_array(array, size);
-			}	
+			}
 			i++;
 		}
 	}
