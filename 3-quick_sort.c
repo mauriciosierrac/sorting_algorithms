@@ -35,13 +35,12 @@ int partition_beer(int *array, int low, int high, size_t size)
 	{
 		if (array[j] <= beer)
 		{
-			
 			if (i != j)
 			{
 				swap_int(&array[i], &array[j]);
 				print_array(array, size);
 			}	
-			i++;	
+			i++;
 		}
 	}
 	if (i != high)
