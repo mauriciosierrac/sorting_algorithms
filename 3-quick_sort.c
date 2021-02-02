@@ -1,67 +1,88 @@
 #include "sort.h"
 
+
 /**
- * quick_sort_r - recursive function
- * @array_init: pointer to initial array
- * @size_init: initial length of array
- * @array: pointer to array
+ * swap_int - swap two numbers
+ * @cheese: firts number
+ * @bacon: second number
+ * Return: void
+ */
+
+void swap_int(int *cheese, int *bacon)
+{
+	int pizza;
+
+	pizza = *cheese;
+	*cheese = *bacon;
+	*bacon = pizza;
+}
+
+/**
+ * partition_beer - lomuto partition
+ * @array: pointer to initial array
+ * @low: low
+ * @high: high
+ * @size: size of array
+ * Return: void
+ */
+
+int partition_beer(int *array, int low, int high, size_t size)
+{
+	int beer = array[high];
+	int i = low, j;
+
+	for (j = low; j < high; j++)
+	{
+		if (array[j] <= beer)
+		{
+			
+			if (i != j)
+			{
+				swap_int(&array[i], &array[j]);
+				print_array(array, size);
+			}	
+			i++;	
+		}
+	}
+	if (i != high)
+	{
+		swap_int(&array[i], &array[high]);
+		print_array(array, size);
+	}
+	return (i);
+}
+
+/**
+ * burgerquick - recursive function
+ * @array: pointer to initial array
+ * @low: initial length of array
+ * @high: pointer to array
  * @size: size to array
  * Return: nothing
  */
 
-void quick_sort_r(int *array_init, size_t size_init, int *array, size_t size)
+void burgerquick(int *array, int low, int high, size_t size)
 {
-	size_t j, aux;
-	int i = -1, n, aux2, pivot = array[size - 1];
+	int burger;
 
-	if (array && size > 1)
+	if (low < high)
 	{
-		for (j = 0; j < size - 1; j++)
-		{
-			if (array[j] < pivot)
-			{
-				i++;
-				aux = i;
-				if (aux != j && array[j] != array[aux])
-				{
-					n = array[j];
-					array[j] = array[i];
-					array[i] = n;
-					print_array(array_init, size_init);
-				}
-			}
-		}
-		aux2 = size;
-		if (aux2 - 1 != i + 1 && array[aux2 - 1] != array[i + 1])
-		{
-			array[size - 1] = array[i + 1];
-			array[i + 1] = pivot;
-			print_array(array_init, size_init);
-		}
-		if (i > 0)
-		{
-			quick_sort_r(array_init, size_init, array, i + 1);
-		}
-		quick_sort_r(array_init, size_init, array + i + 2, size - (i + 2));
+		burger = partition_beer(array, low, high, size);
+		burgerquick(array, low, burger - 1, size);
+		burgerquick(array, burger + 1, high, size);
 	}
 }
 
 /**
- * quick_sort - function quick sorting algorith
- * @array: pointer to array
+ * quick_sort - function that sorts an array of int
+ * @array: array of integers
  * @size: size of array
- * Return: nothing
+ * Return: array of integers in ascending order
  */
 
 void quick_sort(int *array, size_t size)
 {
-	int *array_init;
-	size_t size_init;
-
-	if (array)
-	{
-		array_init = array;
-		size_init = size;
-		quick_sort_r(array_init, size_init, array, size);
-	}
+	if (array == NULL || size < 2)
+		return;
+	burgerquick(array, 0, size - 1, size);
 }
