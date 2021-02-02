@@ -1,9 +1,9 @@
 #include "sort.h"
 
 /**
- * 
- * 
- * 
+ * shell_sort -  sorting by shell method
+ * @array: pointer to array
+ * @size: size of array
  */
 
 void shell_sort(int *array, size_t size)
@@ -26,10 +26,8 @@ void shell_sort(int *array, size_t size)
 			{
 				array[in] = array[in - h];
 				in = in - h;
-				
 			}
 			array[in] = temp;
-			
 		}
 		h = (h - 1) / 3;
 		print_array(array, size);
